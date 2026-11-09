@@ -97,6 +97,7 @@ connectDB().then(async () => {
   }
 });
 
+app.use('/api/auth', userRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/recipes', recipeRoutes);
 app.use('/api/categories', categoryRoutes);
