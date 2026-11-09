@@ -1,64 +1,30 @@
-# M32: Digital Recipe Sharing and Food Management System
+# RecipeHub - Digital Recipe Sharing & Food Management System
 
-MERN Stack application built according to the Hackathon Problem Statement and Guidelines.
+A simple and responsive full-stack MERN application to create, browse, search, and manage food recipes.
 
-## Project Structure
+## Tech Stack
 
-```
-temp/
-├── backend/
-│   ├── config/
-│   │   └── db.js
-│   ├── controllers/
-│   │   ├── categoryController.js
-│   │   ├── favoriteController.js
-│   │   ├── recipeController.js
-│   │   └── userController.js
-│   ├── models/
-│   │   ├── Category.js
-│   │   ├── Favorite.js
-│   │   ├── Recipe.js
-│   │   └── User.js
-│   ├── routes/
-│   │   ├── categoryRoutes.js
-│   │   ├── favoriteRoutes.js
-│   │   ├── recipeRoutes.js
-│   │   └── userRoutes.js
-│   ├── .env
-│   ├── package.json
-│   └── server.js
-└── frontend/
-    ├── src/
-    │   ├── components/
-    │   │   ├── CategoryManager.jsx
-    │   │   ├── FavoritesList.jsx
-    │   │   ├── Navbar.jsx
-    │   │   ├── RecipeCard.jsx
-    │   │   ├── RecipeDetail.jsx
-    │   │   ├── RecipeForm.jsx
-    │   │   └── UserManager.jsx
-    │   ├── services/
-    │   │   └── api.js
-    │   ├── App.css
-    │   ├── App.jsx
-    │   └── main.jsx
-    ├── index.html
-    ├── package.json
-    └── vite.config.js
-```
+- **Frontend: React 19, Axios, Vite, CSS
+- **Backend: Node.js, Express.js
+- **Database: MongoDB & Mongoose
+- **Tooling: MongoDB Compass, Nodemon
 
-## Database Details (MongoDB Compass)
+## Features
 
-- Connection URI: `mongodb://127.0.0.1:27017/recipes_db`
-- Collections:
-  - `recipes`
-  - `categories`
-  - `users`
-  - `favorites`
+- **Recipe Management:** Create, view, edit, and delete food recipes.
+- **Recipe Ingredients:** Add and maintain list of ingredients for each dish.
+- **Cooking Instructions:** Step-by-step preparation steps.
+- **Search & Filter:** Search recipes by name or ingredient, and filter by food category.
+- **Categories:** Add and view categories (Main Course, Appetizer, Dessert, Beverage, etc.).
+- **Favorites:** Save favourite dishes for quick access.
+- **User Management:** Register new users and view existing user records.
 
-### Sample Recipe Document (`recipes` collection):
+## Database Details
 
-```json
+- **URI:** `mongodb://127.0.0.1:27017/recipes_db`
+- **Collections:** `recipes`, `categories`, `users`, `favorites`
+
+# Sample Recipe Document
 {
   "recipeId": "RC101",
   "recipeName": "Vegetable Biryani",
@@ -76,42 +42,27 @@ temp/
   ],
   "status": "Published"
 }
-```
 
-## REST API Endpoints Specification
 
-| Method | Endpoint Route | Operation |
-| :--- | :--- | :--- |
-| POST | `/api/users` | Register user |
-| GET | `/api/users` | View users |
-| POST | `/api/recipes` | Add recipe |
-| GET | `/api/recipes` | View recipes |
-| GET | `/api/recipes/:id` | Get recipe |
-| PUT | `/api/recipes/:id` | Update recipe |
-| DELETE | `/api/recipes/:id` | Delete recipe |
-| GET | `/api/recipes/search/:keyword` | Search recipe |
-| POST | `/api/categories` | Add recipe category |
-| GET | `/api/categories` | View categories |
-| POST | `/api/favorites` | Add favorite recipe |
-| GET | `/api/favorites` | View favorite recipes |
-| DELETE | `/api/favorites/:id` | Remove favorite recipe |
+## How to Run
 
-## Running the Application
+### 1. Start MongoDB
+Make sure MongoDB is running locally on port 27017. You can connect through MongoDB Compass using:
+`mongodb://localhost:27017`
 
-### Backend
-1. Navigate to the backend directory:
-   `cd backend`
-2. Install packages (if not already installed):
-   `npm install`
-3. Start the server:
-   `npm run dev` or `node server.js`
-   Server starts on `http://localhost:5000`
+### 2. Run Backend
 
-### Frontend
-1. Navigate to the frontend directory:
-   `cd frontend`
-2. Install packages (if not already installed):
-   `npm install`
-3. Start the Vite development server:
-   `npm run dev`
-   Access the web app at `http://localhost:5173`
+cd backend
+npm install
+npm run dev
+
+Backend runs on `http://localhost:5000`. It will auto-seed starter recipes if the database is empty.
+
+### 3. Run Frontend
+In a new terminal:
+
+cd frontend
+npm install
+npm run dev
+
+Frontend runs on `http://localhost:5173`.
