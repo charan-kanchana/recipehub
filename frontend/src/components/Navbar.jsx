@@ -1,48 +1,65 @@
 import React from 'react';
-const Navbar = ({ activeTab, setActiveTab }) => {
-  return (
-    <header className="navbar">
-      <div className="nav-container">
-        <div className="brand" onClick={() => setActiveTab('recipes')}>
-          <span className="brand-badge">M32</span>
-          <span className="brand-title">RecipeHub</span>
-        </div>
+import { Link, useNavigate } from 'react-router-dom';
 
-        <nav className="nav-links">
-          <button
-            className={`nav-btn ${activeTab === 'recipes' ? 'active' : ''}`}
-            onClick={() => setActiveTab('recipes')}
-          >
-            Recipes
-          </button>
-          <button
-            className={`nav-btn ${activeTab === 'add-recipe' ? 'active' : ''}`}
-            onClick={() => setActiveTab('add-recipe')}
-          >
-            + Add Recipe
-          </button>
-          <button
-            className={`nav-btn ${activeTab === 'categories' ? 'active' : ''}`}
-            onClick={() => setActiveTab('categories')}
-          >
-            Categories
-          </button>
-          <button
-            className={`nav-btn ${activeTab === 'favorites' ? 'active' : ''}`}
-            onClick={() => setActiveTab('favorites')}
-          >
-            Favorites
-          </button>
-          <button
-            className={`nav-btn ${activeTab === 'users' ? 'active' : ''}`}
-            onClick={() => setActiveTab('users')}
-          >
-            Users
-          </button>
-        </nav>
-      </div>
-    </header>
+function Navbar({ user, onLogout }) {
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    onLogout();
+    navigate('/login');
+  };
+
+  return (
+    <nav className="navbar">
+      <Link to="/" className="logo">
+        RecipeHub
+      </Link>
+
+      <ul className="nav-links">
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+
+        {user ? (
+          <>
+            <li>
+              <Link to="/favorites">Favorites</Link>
+            </li>
+            <li>
+              <Link to="/add-recipe">Add Recipe</Link>
+            </li>
+
+            {user.role && user.role.toLowerCase() === 'admin' && (
+              <li>
+                <Link to="/admin">Admin Dashboard</Link>
+              </li>
+            )}
+
+            <li>
+              <span className="user-info">
+                {user.name} ({user.role})
+              </span>
+            </li>
+            <li>
+              <button onClick={handleLogoutClick} className="btn btn-secondary btn-sm">
+                Logout
+              </button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/register">Register</Link>
+            </li>
+          </>
+        )}
+      </ul>
+    </nav>
   );
-};
+}
 
 export default Navbar;
+
